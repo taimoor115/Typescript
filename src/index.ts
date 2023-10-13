@@ -12,10 +12,10 @@ let level; //any
 level = 12;
 level = "Any mean any type but we loose typescript major feature"
 
-function render(document: any) { // as we see error but we can fix using any but we loose typescript property
-  console.log('Hello');
+// function render(document: any) { // as we see error but we can fix using any but we loose typescript property
+//   console.log('Hello');
 
-}
+// }
 
 // Arrays
 
@@ -59,3 +59,13 @@ const enum Size { Small = 's', Medium = 'm', Large = 'l'};
 let mySize: Size = Size.Medium;
 console.log(mySize);
 
+
+// Functions
+
+function sum(c: number, d: number): number {
+    if(d > 0)
+    return c + d;
+    return c + d;
+}
+
+console.log(sum(1,2));

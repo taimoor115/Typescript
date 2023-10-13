@@ -5,9 +5,6 @@ let isPublished = true;
 let level;
 level = 12;
 level = "Any mean any type but we loose typescript major feature";
-function render(document) {
-    console.log('Hello');
-}
 const arr = [1, 2, 3, 4];
 let tuple = [12, 'Taimoor', true];
 tuple.push(1);
@@ -23,4 +20,10 @@ const large = 3;
 ;
 let mySize = "m";
 console.log(mySize);
+function sum(c, d) {
+    if (d > 0)
+        return c + d;
+    return c + d;
+}
+console.log(sum(1, 2));
 //# sourceMappingURL=index.js.map
