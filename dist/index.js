@@ -26,4 +26,8 @@ function sum(c, d) {
     return c + d;
 }
 console.log(sum(1, 2));
+function sum2(a, b, ...rest) {
+    return a + b + rest.reduce((p, c) => p + c);
+}
+console.log(sum2(10, 20, 30, 40, 50));
 //# sourceMappingURL=index.js.map
