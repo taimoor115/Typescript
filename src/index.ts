@@ -76,16 +76,51 @@ function sum2(a: number, b: number, ...rest: number[]): number {
 }
 console.log(sum2(10, 20, 30, 40, 50));
 
-// Objects
-
-let employee: {
+// Type Aliases
+type Employee = {
   readonly id: number;
   name: string;
   retire: (date: Date) => void;
-} = {
+};
+
+// Objects
+
+let employee: Employee = {
   id: 1,
   name: "Taimoor",
   retire: (date: Date) => {
     console.log(date);
   },
 };
+
+// Narrowing + Union
+// The process of refining types to more specific types than declared is called narrowing.
+
+function KgtoLbs(weight: number | string): number {
+  // weight.  Narrowing
+  if (typeof weight === "number") return weight * 2.2;
+  else return parseInt(weight) * 2.2;
+}
+
+// Type Intersection
+
+type Dragable = {
+  drag: () => void;
+};
+type Resize = {
+  resize: () => void;
+};
+
+type UI = Dragable & Resize;
+
+let textBox: UI = {
+  drag: () => {},
+  resize: () => {},
+};
+
+
+// Literals
+
+// let quantity : 50 | 100 = 50;
+type Quantity = 50 | 100;
+let quantity: Quantity = 50;
