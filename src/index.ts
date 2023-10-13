@@ -124,3 +124,77 @@ let textBox: UI = {
 // let quantity : 50 | 100 = 50;
 type Quantity = 50 | 100;
 let quantity: Quantity = 50;
+
+// Nullable
+
+function greet(name: string | null | undefined): void {
+  if(name)
+    console.log(name);
+  else
+    console.log("Hola!!");
+}
+
+greet(null);
+
+// Optional Chaining
+type Customer = {
+  birthday?: Date
+};
+function getCustomer( id: number): Customer | null | undefined {
+  return id === 0 ? null : {birthday: new Date() };
+}
+
+let customer = getCustomer(1);
+// if(customer !== null && customer !== undefined )
+  // optional property access operator
+  console.log(customer?.birthday?.getFullYear());
+
+// Optional element access operator
+// if(customer !== null && customer !== undefined)
+//       customer[0]
+
+// customer?.[0]
+
+// Optional Call Element
+let log: any = null;
+log?.('a')
+
+
+// Nullish Coaelscing
+
+let speed: number | null = null
+
+let ride = {
+  // it chooses speed if it isnot null or undefined
+  speed: speed ?? 20
+}
+
+// Type Assertion
+
+// we use type assertion where user know more about types than compiler
+// Two ways to achieve
+// let phones = document.getElementById('phone') as HTMLInputElement;
+// let mobiles = <HTMLInputElement> document.getElementById('mobiles');
+
+// Unknown
+// function render(document: unknown) {
+
+//   // as we see below if we use any in parameters no check in built in function
+//   // document.move()
+//   // document.whatEverWeWant();
+//   // so we use unknown keyword it shows error in that case if no built in function is used
+// }
+
+// Never
+// It represents that values that never occur
+
+// function process(): never {
+//   while(true) {}
+// }
+function reject(message: string): never {
+  throw new Error(message);
+}
+// process();
+reject('Hey');
+// // This function never come to this line
+// console.log('Hello');
