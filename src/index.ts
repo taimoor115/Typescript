@@ -201,15 +201,15 @@ let ride = {
 
 
 class Account {
-  readonly id: number;
-  name: string;
-  private _balance: number;
+  // readonly id: number;
+  // name: string;
+  // private _balance: number;
   nickname? : string //optional
 
-  constructor(id: number, name: string, balance: number) {
-    this.id = id;
-    this._balance = balance;
-    this.name = name;
+  constructor(public readonly id: number, public name: string, private _balance: number) {
+    // this.id = id;
+    // this._balance = balance;
+    // this.name = name;
   }
 
   deposit(amount: number): void {
