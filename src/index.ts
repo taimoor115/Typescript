@@ -220,15 +220,21 @@ class Account {
     this._balance += amount;
   }
 
-  getBalance(): number {
+  get balance(): number {
     return this._balance;
   }
-
+  set balance(value: number) {
+    if(value < 0) {
+      throw new Error('Invalid Value');
+    }
+    this._balance = value;
+  }
 }
 
 let object1 = new Account(1,'Taimoor',0);
 object1.deposit(100);
-console.log(object1.getBalance());
+console.log(object1.balance);
+object1.balance = 1;
 console.log(object1 instanceof Account);
 
 
