@@ -238,3 +238,128 @@ object1.balance = 1;
 console.log(object1 instanceof Account);
 
 
+class SeatAssignment {
+  // A1 A2 ...
+  // Taimoor Qasim
+  // Below called Index signature property which allow us to index dynamically
+  [seatNumber: string] : string;
+}
+
+let seats = new SeatAssignment();
+// seats['A1'] = "Taimoor";
+seats.A1 = "Taimoor";
+// Uper two are identitical
+seats.A2 = "Qasim"
+
+
+// Static
+class Ride {
+  private static _activeRides: number = 0;
+  start() { Ride._activeRides++ };
+  stop() { Ride._activeRides--};
+
+  static get activeRides() {
+    return Ride._activeRides;
+  }
+}
+
+// Now we make a single varaible that keep track of the active rides using static, private
+let ride1 = new Ride();
+ride1.start();
+let ride2 = new Ride();
+ride2.start();
+console.log(Ride.activeRides);
+
+
+class Person {
+  constructor(public firstName: string, public lastName: string) {
+
+  }
+
+  get fullName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+}
+
+class Student extends Person{
+  constructor(public studentId: number, firstName: string, lastName: string) {
+      super(firstName, lastName);
+  }
+
+  meet() {
+    console.log('Meeting');
+  }
+}
+
+class Principal extends Person {
+  override get fullName() {
+    return 'Principal ' + super.fullName;
+  }
+}
+class Teacher extends Person {
+  override get fullName() {
+    return 'Professor ' + super.fullName;
+  }
+}
+printPeople(
+[
+  new Student(2,"Taimoor", "Hussain"),
+  new Teacher('Ishaq', 'Khan'),
+  new Principal("John", 'Smith')
+]
+);
+function printPeople(people: Person[]) {
+  for(let person of people) {
+    console.log(person.fullName);
+
+  }
+}
+// Open Closed principal
+// classes open for extension but closed for modification
+// Private key word is not inherited but protected keyword is inherited
+let student = new Student(1,'Taimoor', "Hussain");
+console.log(student.fullName);
+let teacher = new Teacher('Qaim', 'Hafiz');
+console.log(teacher.fullName);
+
+// Abstaction
+
+abstract class Shape {
+  constructor(public color: string) {}
+  abstract render(): void;
+}
+class Circle extends Shape {
+  constructor(public radius: number, color: string ) {
+    super(color);
+  }
+  override render(): void {
+      console.log("Circle is rendering");
+  }
+}
+
+// Interfaces
+// abstract class Calender {
+//   constructor(public name: string) {}
+//   abstract addEvent():void;
+//   abstract removeEvent(): void;
+// }
+
+interface Calender {
+  name: string;
+  addEvent(): void;
+  removeEvent(): void;
+}
+
+interface CloudCalender extends Calender {
+  sync(): void;
+}
+class GoogleCalender implements Calender {
+  constructor(public name: string) {}
+  addEvent(): void {
+    throw new Error("Method not implemented.");
+  }
+  removeEvent(): void {
+    throw new Error("Method not implemented.");
+  }
+
+}
