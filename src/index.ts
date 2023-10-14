@@ -191,10 +191,44 @@ let ride = {
 // function process(): never {
 //   while(true) {}
 // }
-function reject(message: string): never {
-  throw new Error(message);
-}
+// function reject(message: string): never {
+  // throw new Error(message);
+// }
 // process();
-reject('Hey');
+// reject('Hey');
 // // This function never come to this line
 // console.log('Hello');
+
+
+class Account {
+  readonly id: number;
+  name: string;
+  private _balance: number;
+  nickname? : string //optional
+
+  constructor(id: number, name: string, balance: number) {
+    this.id = id;
+    this._balance = balance;
+    this.name = name;
+  }
+
+  deposit(amount: number): void {
+    if(amount <= 0)
+      console.log("Error");
+
+
+    this._balance += amount;
+  }
+
+  getBalance(): number {
+    return this._balance;
+  }
+
+}
+
+let object1 = new Account(1,'Taimoor',0);
+object1.deposit(100);
+console.log(object1.getBalance());
+console.log(object1 instanceof Account);
+
+

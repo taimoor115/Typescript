@@ -66,8 +66,19 @@ let speed = null;
 let ride = {
     speed: speed !== null && speed !== void 0 ? speed : 20
 };
-function reject(message) {
-    throw new Error(message);
+class Account {
+    constructor(id, name, balance) {
+        this.id = id;
+        this.balance = balance;
+        this.name = name;
+    }
+    deposit(amount) {
+        if (amount <= 0)
+            console.log("Error");
+        this.balance += amount;
+    }
 }
-reject('Hey');
+let object1 = new Account(1, 'Taimoor', 0);
+object1.deposit(100);
+console.log(object1.balance);
 //# sourceMappingURL=index.js.map
