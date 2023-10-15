@@ -118,7 +118,6 @@ let textBox: UI = {
   resize: () => {},
 };
 
-
 // Literals
 
 // let quantity : 50 | 100 = 50;
@@ -128,26 +127,24 @@ let quantity: Quantity = 50;
 // Nullable
 
 function greet(name: string | null | undefined): void {
-  if(name)
-    console.log(name);
-  else
-    console.log("Hola!!");
+  if (name) console.log(name);
+  else console.log("Hola!!");
 }
 
 greet(null);
 
 // Optional Chaining
 type Customer = {
-  birthday?: Date
+  birthday?: Date;
 };
-function getCustomer( id: number): Customer | null | undefined {
-  return id === 0 ? null : {birthday: new Date() };
+function getCustomer(id: number): Customer | null | undefined {
+  return id === 0 ? null : { birthday: new Date() };
 }
 
 let customer = getCustomer(1);
 // if(customer !== null && customer !== undefined )
-  // optional property access operator
-  console.log(customer?.birthday?.getFullYear());
+// optional property access operator
+console.log(customer?.birthday?.getFullYear());
 
 // Optional element access operator
 // if(customer !== null && customer !== undefined)
@@ -157,17 +154,16 @@ let customer = getCustomer(1);
 
 // Optional Call Element
 let log: any = null;
-log?.('a')
-
+log?.("a");
 
 // Nullish Coaelscing
 
-let speed: number | null = null
+let speed: number | null = null;
 
 let ride = {
   // it chooses speed if it isnot null or undefined
-  speed: speed ?? 20
-}
+  speed: speed ?? 20,
+};
 
 // Type Assertion
 
@@ -192,30 +188,31 @@ let ride = {
 //   while(true) {}
 // }
 // function reject(message: string): never {
-  // throw new Error(message);
+// throw new Error(message);
 // }
 // process();
 // reject('Hey');
 // // This function never come to this line
 // console.log('Hello');
 
-
 class Account {
   // readonly id: number;
   // name: string;
   // private _balance: number;
-  nickname? : string //optional
+  nickname?: string; //optional
 
-  constructor(public readonly id: number, public name: string, private _balance: number) {
+  constructor(
+    public readonly id: number,
+    public name: string,
+    private _balance: number
+  ) {
     // this.id = id;
     // this._balance = balance;
     // this.name = name;
   }
 
   deposit(amount: number): void {
-    if(amount <= 0)
-      console.log("Error");
-
+    if (amount <= 0) console.log("Error");
 
     this._balance += amount;
   }
@@ -224,39 +221,41 @@ class Account {
     return this._balance;
   }
   set balance(value: number) {
-    if(value < 0) {
-      throw new Error('Invalid Value');
+    if (value < 0) {
+      throw new Error("Invalid Value");
     }
     this._balance = value;
   }
 }
 
-let object1 = new Account(1,'Taimoor',0);
+let object1 = new Account(1, "Taimoor", 0);
 object1.deposit(100);
 console.log(object1.balance);
 object1.balance = 1;
 console.log(object1 instanceof Account);
 
-
 class SeatAssignment {
   // A1 A2 ...
   // Taimoor Qasim
   // Below called Index signature property which allow us to index dynamically
-  [seatNumber: string] : string;
+  [seatNumber: string]: string;
 }
 
 let seats = new SeatAssignment();
 // seats['A1'] = "Taimoor";
 seats.A1 = "Taimoor";
 // Uper two are identitical
-seats.A2 = "Qasim"
-
+seats.A2 = "Qasim";
 
 // Static
 class Ride {
   private static _activeRides: number = 0;
-  start() { Ride._activeRides++ };
-  stop() { Ride._activeRides--};
+  start() {
+    Ride._activeRides++;
+  }
+  stop() {
+    Ride._activeRides--;
+  }
 
   static get activeRides() {
     return Ride._activeRides;
@@ -270,56 +269,50 @@ let ride2 = new Ride();
 ride2.start();
 console.log(Ride.activeRides);
 
-
 class Person {
-  constructor(public firstName: string, public lastName: string) {
-
-  }
+  constructor(public firstName: string, public lastName: string) {}
 
   get fullName() {
-    return this.firstName + ' ' + this.lastName;
+    return this.firstName + " " + this.lastName;
   }
 }
 
-class Student extends Person{
+class Student extends Person {
   constructor(public studentId: number, firstName: string, lastName: string) {
-      super(firstName, lastName);
+    super(firstName, lastName);
   }
 
   meet() {
-    console.log('Meeting');
+    console.log("Meeting");
   }
 }
 
 class Principal extends Person {
   override get fullName() {
-    return 'Principal ' + super.fullName;
+    return "Principal " + super.fullName;
   }
 }
 class Teacher extends Person {
   override get fullName() {
-    return 'Professor ' + super.fullName;
+    return "Professor " + super.fullName;
   }
 }
-printPeople(
-[
-  new Student(2,"Taimoor", "Hussain"),
-  new Teacher('Ishaq', 'Khan'),
-  new Principal("John", 'Smith')
-]
-);
+printPeople([
+  new Student(2, "Taimoor", "Hussain"),
+  new Teacher("Ishaq", "Khan"),
+  new Principal("John", "Smith"),
+]);
 function printPeople(people: Person[]) {
-  for(let person of people) {
+  for (let person of people) {
     console.log(person.fullName);
-
   }
 }
 // Open Closed principal
 // classes open for extension but closed for modification
 // Private key word is not inherited but protected keyword is inherited
-let student = new Student(1,'Taimoor', "Hussain");
+let student = new Student(1, "Taimoor", "Hussain");
 console.log(student.fullName);
-let teacher = new Teacher('Qaim', 'Hafiz');
+let teacher = new Teacher("Qaim", "Hafiz");
 console.log(teacher.fullName);
 
 // Abstaction
@@ -329,11 +322,11 @@ abstract class Shape {
   abstract render(): void;
 }
 class Circle extends Shape {
-  constructor(public radius: number, color: string ) {
+  constructor(public radius: number, color: string) {
     super(color);
   }
   override render(): void {
-      console.log("Circle is rendering");
+    console.log("Circle is rendering");
   }
 }
 
@@ -369,21 +362,21 @@ class GoogleCalender implements Calender {
 class KeyValue<K, V> {
   constructor(public key: K, public value: V) {}
 }
-let key1 = new KeyValue<number, string>(1,'hey');
+let key1 = new KeyValue<number, string>(1, "hey");
 // Generics
 function wrapInArray<T>(value: T) {
   return [value];
 }
 // wrap array var become array of any type you gave
-let wrapArray = wrapInArray('1');
+let wrapArray = wrapInArray("1");
 
 // Interfaces generics
 // http://www.web.com.users
 // http://www.web.com.products
 
-interface Result <T>{
+interface Result<T> {
   data: T | null;
-  error: string | null
+  error: string | null;
 }
 function fetch<T>(url: string): Result<T> {
   return { data: null, error: null };
@@ -396,8 +389,8 @@ interface Products {
   details: string;
 }
 
-let result = fetch<User>('hello');
-result.data?.name
+let result = fetch<User>("hello");
+result.data?.name;
 
 // // Generics constraints
 // function echo<T extends string | number > (value: T): T {
@@ -406,21 +399,19 @@ result.data?.name
 // echo(true)
 // echo(1);
 
-
 // function echo<T extends {name: string}> (value: T): T {
 //   return value;
 // }
 // echo({name:"Taimoor"})
 
 interface Human {
-  name: string
+  name: string;
 }
 
-function echo<T extends Human> (value: T): T {
+function echo<T extends Human>(value: T): T {
   return value;
 }
-echo({name:"Taimoor"});
-
+echo({ name: "Taimoor" });
 
 interface Product {
   name: string;
@@ -435,25 +426,25 @@ class Store<T> {
 
   // T is product
   // keyof T => 'name' | 'price'
-  find(property:keyof T, value: unknown): T | undefined {
-    return this._objects.find(obj => obj[property] === value);
+  find(property: keyof T, value: unknown): T | undefined {
+    return this._objects.find((obj) => obj[property] === value);
   }
 }
 
 let store = new Store<Product>();
-store.add({name: 'Potato', price: 100});
-store.find('name', 'Potato');
-store.find('price', 100);
+store.add({ name: "Potato", price: 100 });
+store.find("name", "Potato");
+store.find("price", 100);
 // store.find('anything', '100')
 // Pass on generic type parameter
 class Compressiable<T> extends Store<T> {
   compress(): void {}
 }
-let compress = new Compressiable<Product>
+let compress = new Compressiable<Product>();
 // compress.add();
 
 // Restrict the generic type parameter
-class Searchable<T extends {name: string }> extends Store<T> {
+class Searchable<T extends { name: string }> extends Store<T> {
   // find(name: string): T | undefined {
   //   return this._objects.find(obj => object1.name === name);
   // }
@@ -473,19 +464,38 @@ interface Car {
 type ReadOnly<T> = {
   // index signature
   // keyof
-  readonly [K in keyof T] : T[K];
-}
+  readonly [K in keyof T]: T[K];
+};
 type Optional<T> = {
-  readonly[K in keyof T] ?: T[K];
-}
+  readonly [K in keyof T]?: T[K];
+};
 
 type Nullablel<T> = {
-  readonly[K in keyof T] : T[K] | null;
-}
+  readonly [K in keyof T]: T[K] | null;
+};
 let product: ReadOnly<Car> = {
-  engine : 'turbo',
-  name: 'BMW'
-}
-
+  engine: "turbo",
+  name: "BMW",
+};
 // product.engine = 'hey'
 
+type ComponentOptions = {
+  selector: string;
+}
+function Component(options: ComponentOptions) {
+  return (constructor : Function) => {
+    console.log('decorator');
+    constructor.prototype.uniqueId = Date.now();
+    constructor.prototype.options = options;
+    constructor.prototype.insertInDOM = () => {
+      console.log(constructor);
+    }
+  }
+
+}
+// @Component({ selector: '#my-profile'})
+class ProfileComponent {}
+
+export class CircleClass {
+  constructor(public radius: number) {}
+}
