@@ -1,5 +1,7 @@
 "use strict";
-var _a;
+var _a, _b;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CircleClass = void 0;
 let sales = 123456789;
 let course = "TypeScript";
 let isPublished = true;
@@ -61,10 +63,10 @@ function getCustomer(id) {
 let customer = getCustomer(1);
 console.log((_a = customer === null || customer === void 0 ? void 0 : customer.birthday) === null || _a === void 0 ? void 0 : _a.getFullYear());
 let log = null;
-log === null || log === void 0 ? void 0 : log('a');
+log === null || log === void 0 ? void 0 : log("a");
 let speed = null;
 let ride = {
-    speed: speed !== null && speed !== void 0 ? speed : 20
+    speed: speed !== null && speed !== void 0 ? speed : 20,
 };
 class Account {
     constructor(id, name, _balance) {
@@ -82,12 +84,12 @@ class Account {
     }
     set balance(value) {
         if (value < 0) {
-            throw new Error('Invalid Value');
+            throw new Error("Invalid Value");
         }
         this._balance = value;
     }
 }
-let object1 = new Account(1, 'Taimoor', 0);
+let object1 = new Account(1, "Taimoor", 0);
 object1.deposit(100);
 console.log(object1.balance);
 object1.balance = 1;
@@ -98,10 +100,12 @@ let seats = new SeatAssignment();
 seats.A1 = "Taimoor";
 seats.A2 = "Qasim";
 class Ride {
-    start() { Ride._activeRides++; }
-    ;
-    stop() { Ride._activeRides--; }
-    ;
+    start() {
+        Ride._activeRides++;
+    }
+    stop() {
+        Ride._activeRides--;
+    }
     static get activeRides() {
         return Ride._activeRides;
     }
@@ -118,7 +122,7 @@ class Person {
         this.lastName = lastName;
     }
     get fullName() {
-        return this.firstName + ' ' + this.lastName;
+        return this.firstName + " " + this.lastName;
     }
 }
 class Student extends Person {
@@ -127,31 +131,124 @@ class Student extends Person {
         this.studentId = studentId;
     }
     meet() {
-        console.log('Meeting');
+        console.log("Meeting");
     }
 }
 class Principal extends Person {
     get fullName() {
-        return 'Principal ' + super.fullName;
+        return "Principal " + super.fullName;
     }
 }
 class Teacher extends Person {
     get fullName() {
-        return 'Professor ' + super.fullName;
+        return "Professor " + super.fullName;
     }
 }
 printPeople([
     new Student(2, "Taimoor", "Hussain"),
-    new Teacher('Ishaq', 'Khan'),
-    new Principal("John", 'Smith')
+    new Teacher("Ishaq", "Khan"),
+    new Principal("John", "Smith"),
 ]);
 function printPeople(people) {
     for (let person of people) {
         console.log(person.fullName);
     }
 }
-let student = new Student(1, 'Taimoor', "Hussain");
+let student = new Student(1, "Taimoor", "Hussain");
 console.log(student.fullName);
-let teacher = new Teacher('Qaim', 'Hafiz');
+let teacher = new Teacher("Qaim", "Hafiz");
 console.log(teacher.fullName);
+class Shape {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Circle extends Shape {
+    constructor(radius, color) {
+        super(color);
+        this.radius = radius;
+    }
+    render() {
+        console.log("Circle is rendering");
+    }
+}
+class GoogleCalender {
+    constructor(name) {
+        this.name = name;
+    }
+    addEvent() {
+        throw new Error("Method not implemented.");
+    }
+    removeEvent() {
+        throw new Error("Method not implemented.");
+    }
+}
+class KeyValue {
+    constructor(key, value) {
+        this.key = key;
+        this.value = value;
+    }
+}
+let key1 = new KeyValue(1, "hey");
+function wrapInArray(value) {
+    return [value];
+}
+let wrapArray = wrapInArray("1");
+function fetch(url) {
+    return { data: null, error: null };
+}
+let result = fetch("hello");
+(_b = result.data) === null || _b === void 0 ? void 0 : _b.name;
+function echo(value) {
+    return value;
+}
+echo({ name: "Taimoor" });
+class Store {
+    constructor() {
+        this._objects = [];
+    }
+    add(obj) {
+        this._objects.push(obj);
+    }
+    find(property, value) {
+        return this._objects.find((obj) => obj[property] === value);
+    }
+}
+let store = new Store();
+store.add({ name: "Potato", price: 100 });
+store.find("name", "Potato");
+store.find("price", 100);
+class Compressiable extends Store {
+    compress() { }
+}
+let compress = new Compressiable();
+class Searchable extends Store {
+}
+class ProductStore extends Store {
+    filterByCategory(category) {
+        return [];
+    }
+}
+let product = {
+    engine: "turbo",
+    name: "BMW",
+};
+function Component(options) {
+    return (constructor) => {
+        console.log('decorator');
+        constructor.prototype.uniqueId = Date.now();
+        constructor.prototype.options = options;
+        constructor.prototype.insertInDOM = () => {
+            console.log(constructor);
+        };
+    };
+}
+class ProfileComponent {
+}
+class CircleClass {
+    constructor(radius) {
+        this.radius = radius;
+    }
+}
+exports.CircleClass = CircleClass;
 //# sourceMappingURL=index.js.map
