@@ -361,5 +361,131 @@ class GoogleCalender implements Calender {
   removeEvent(): void {
     throw new Error("Method not implemented.");
   }
-
 }
+
+// Generics
+// Without generics we have to generate different classes for different type of key value like number and string
+// Generics classes
+class KeyValue<K, V> {
+  constructor(public key: K, public value: V) {}
+}
+let key1 = new KeyValue<number, string>(1,'hey');
+// Generics
+function wrapInArray<T>(value: T) {
+  return [value];
+}
+// wrap array var become array of any type you gave
+let wrapArray = wrapInArray('1');
+
+// Interfaces generics
+// http://www.web.com.users
+// http://www.web.com.products
+
+interface Result <T>{
+  data: T | null;
+  error: string | null
+}
+function fetch<T>(url: string): Result<T> {
+  return { data: null, error: null };
+}
+
+interface User {
+  name: string;
+}
+interface Products {
+  details: string;
+}
+
+let result = fetch<User>('hello');
+result.data?.name
+
+// // Generics constraints
+// function echo<T extends string | number > (value: T): T {
+//   return value;
+// }
+// echo(true)
+// echo(1);
+
+
+// function echo<T extends {name: string}> (value: T): T {
+//   return value;
+// }
+// echo({name:"Taimoor"})
+
+interface Human {
+  name: string
+}
+
+function echo<T extends Human> (value: T): T {
+  return value;
+}
+echo({name:"Taimoor"});
+
+
+interface Product {
+  name: string;
+  price: number;
+}
+
+class Store<T> {
+  protected _objects: T[] = [];
+  add(obj: T): void {
+    this._objects.push(obj);
+  }
+
+  // T is product
+  // keyof T => 'name' | 'price'
+  find(property:keyof T, value: unknown): T | undefined {
+    return this._objects.find(obj => obj[property] === value);
+  }
+}
+
+let store = new Store<Product>();
+store.add({name: 'Potato', price: 100});
+store.find('name', 'Potato');
+store.find('price', 100);
+// store.find('anything', '100')
+// Pass on generic type parameter
+class Compressiable<T> extends Store<T> {
+  compress(): void {}
+}
+let compress = new Compressiable<Product>
+// compress.add();
+
+// Restrict the generic type parameter
+class Searchable<T extends {name: string }> extends Store<T> {
+  // find(name: string): T | undefined {
+  //   return this._objects.find(obj => object1.name === name);
+  // }
+}
+// Fix the generic type parameter
+class ProductStore extends Store<Product> {
+  filterByCategory(category: string): Product[] {
+    return [];
+  }
+}
+// Type mapping
+interface Car {
+  engine: string;
+  name: string;
+}
+
+type ReadOnly<T> = {
+  // index signature
+  // keyof
+  readonly [K in keyof T] : T[K];
+}
+type Optional<T> = {
+  readonly[K in keyof T] ?: T[K];
+}
+
+type Nullablel<T> = {
+  readonly[K in keyof T] : T[K] | null;
+}
+let product: ReadOnly<Car> = {
+  engine : 'turbo',
+  name: 'BMW'
+}
+
+// product.engine = 'hey'
+
